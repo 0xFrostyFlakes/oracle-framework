@@ -80,7 +80,7 @@ LLM_PROVIDER_API_KEY=sk-or-v1-162456bb08d888a1c991321f9722bd70a79e24e77a62b420a7
 - Telegram bot token (optional)
 - Discord bot token (optional)
 
-In windows, you can find .env file in the following folder \\wsl$\Ubuntu\home\USERNAME\Orace-framework (where USERNAME is replaced by your own username on your Windows operating system)
+In windows, you can find .env file in the following folder \\wsl$\Ubuntu\home\USERNAME\Orace-framework (where USERNAME is replaced by your own username on your WSL)
 
 You will need your own LLM provider Api key which you will have to replace the example key above
 you can find this at https://openrouter.ai/settings/keys simply sign-up and create a key
