@@ -1,10 +1,53 @@
 # oracle framework
 
 The easiest way to create and manage AI-powered social media personas that can authentically engage with followers.
+Socials: 
 
 [![Discord](https://img.shields.io/discord/1332521682224680984?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/FsTXmwaG3g)
 
 [![Twitter](https://img.shields.io/twitter/follow/oracleframework?style=flat)](https://twitter.com/oracleframework)
+
+[![Twitter](https://img.shields.io/twitter/follow/0xfrostyflakes?style=flat)](https://twitter.com/0xfrostyflakes)
+
+P.S. I have altered this guide for Windows users; This requires virtualization installed by the following steps
+1) To enable virtualization on your computer, access your BIOS settings by pressing the designated key during startup (usually F2, F10, or Del)
+ then navigate to the "Advanced" or "CPU Configuration" section and find the option labeled "Intel Virtualization Technology" (or similar depending on your CPU)
+ and set it to "Enabled" before saving and exiting the BIOS
+
+2) Boot your windows operating system, Select Start , enter Windows features, and select Turn Windows features on or off from the list of results, in the Windows Features window that just opened,
+   find Virtual Machine Platform and select it, Select OK.Restart your PC
+
+3) Use the Search tab for "CMD", right click and open as administrator. Then type
+    ```bash
+    wsl --install -d Ubuntu-22.04
+    ```
+   This will install Ubuntu 22.04 on your computer to use in Windows Subsystem for Linux
+
+4) Setup your Ubuntu process username and password (please note passwords are invisible to you but what you enter is there being logged so don't forget what you type)
+
+5) Run the following commands to install Node 20 and a Debian registry
+```bash
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+
+NODE_MAJOR=20
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+```
+
+6) Install Yarn into your Ubuntu Runtime
+```bash
+yarn
+```
+
+and confirm yarn version with
+
+```bash
+yarn -v
+```
+
+Congratulations now you have the pre-requisites for running the Oracle Framework! Proceed below to understand more:
 
 ## Overview
 
@@ -15,14 +58,12 @@ Oracle is a TypeScript framework that lets you quickly bootstrap social media pe
 1. Clone and install dependencies:
 
 ```bash
-git clone https://github.com/teeasma/oracle-framework
+git clone https://github.com/0xFrostyFlakes/oracle-framework/edit/main/README.md
 cd oracle-framework
-npm install
-# or with yarn
 yarn install
 ```
 
-2. Set up environment:
+2. Set up environment (you only need to run this command the first time):
 
 ```bash
 cp .env.example .env
@@ -30,7 +71,7 @@ cp .env.example .env
 
 3. Configure your `.env` file with:
 
-- LLM provider credentials (we recommend OpenRouter), ie
+- LLM provider credentials (we recommend OpenRouter), the following is just an example of how it should look
 ```
 LLM_PROVIDER_URL=https://openrouter.ai/api/v1
 LLM_PROVIDER_API_KEY=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
@@ -38,6 +79,11 @@ LLM_PROVIDER_API_KEY=sk-or-v1-162456bb08d888a1c991321f9722bd70a79e24e77a62b420a7
 - Twitter account credentials (optional)
 - Telegram bot token (optional)
 - Discord bot token (optional)
+
+In windows, you can find .env file in the following folder \\wsl$\Ubuntu\home\USERNAME\Orace-framework (where USERNAME is replaced by your own username on your Windows operating system)
+
+You will need your own LLM provider Api key which you will have to replace the example key above
+you can find this at https://openrouter.ai/settings/keys simply sign-up and create a key
 
 4. Create your agent:
 
